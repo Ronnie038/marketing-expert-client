@@ -1,0 +1,14 @@
+.myreview_div {
+	min-width: 400px;
+	min-height: 200px;
+	margin-bottom: 1rem;
+	padding: 2rem;
+	padding-top: 4rem;
+}
+
+.modal_div {
+	position: absolute;
+
+	background-color: rgb(105, 22, 22);
+	top: 0;
+}

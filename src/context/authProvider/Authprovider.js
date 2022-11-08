@@ -14,6 +14,9 @@ export const auth = getAuth(app);
 const Authprovider = ({ children }) => {
 	const [user, setUser] = useState(null);
 	const [reviews, setReviews] = useState([]);
+	const [myReviews, setMyReviews] = useState([]);
+	const [reviewUpdate, setReviewUpdate] = useState(false);
+	console.log(reviewUpdate);
 
 	const [loading, setLoading] = useState(true);
 
@@ -31,7 +34,13 @@ const Authprovider = ({ children }) => {
 			.then((res) => res.json())
 			.then((data) => setReviews(data))
 			.catch((err) => console.log(err));
-	}, []);
+	}, [reviewUpdate]);
+
+	useEffect(() => {
+		fetch(`http://localhost:5000/reviewsByQuery?email=${user?.email}`)
+			.then((res) => res.json())
+			.then((data) => setMyReviews(data));
+	}, [user?.email, reviews]);
 
 	useEffect(() => {
 		onAuthStateChanged(auth, (curUser) => {
@@ -46,6 +55,9 @@ const Authprovider = ({ children }) => {
 		logIn,
 		reviews,
 		setReviews,
+		myReviews,
+		setMyReviews,
+		setReviewUpdate,
 	};
 
 	return (

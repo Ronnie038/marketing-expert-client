@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../context/authProvider/Authprovider';
 import Review from '../Review/Review';
 import './Reviews.css';
+import { FaUserCircle } from 'react-icons/fa';
 
 const Reviews = ({ service }) => {
 	const { user, reviews, setReviews } = useContext(AuthContext);
-	console.log(user);
 
 	const [inputReviewText, setInputReviewText] = useState('');
 	const [disabled, setDisabled] = useState(true);
@@ -22,6 +22,8 @@ const Reviews = ({ service }) => {
 			photo: user?.photoURL,
 			date: Date.now(),
 		};
+
+		setReviews([...reviews, userReview]);
 		fetch('http://localhost:5000/reviews', {
 			method: 'POST',
 			headers: {
@@ -53,13 +55,13 @@ const Reviews = ({ service }) => {
 		<div className='p-10'>
 			<h1 className='text-3xl text-center'>Reviews</h1>
 			<hr className='my-3' />
-			<form onSubmit={handleSubmit} className=' mt-3  pb-3'>
+			<di className=' mt-3  pb-3'>
 				<div className='flex '>
-					<img
-						src='https://images.unsplash.com/photo-1667778680202-7aa8d8a903a7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=400&q=60'
-						alt=''
-						className='img_rounded'
-					/>
+					{user?.photoURL ? (
+						<img src={user?.photoURL} alt='' className='img_rounded' />
+					) : (
+						<FaUserCircle className='text-4xl text-green-600' />
+					)}
 					<input
 						onChange={handleInputChange}
 						type='text'
@@ -76,8 +78,8 @@ const Reviews = ({ service }) => {
 								cancel
 							</button>
 							<button
+								onClick={handleSubmit}
 								disabled={disabled}
-								type='submit'
 								className='btn btn-outline mr-28'
 							>
 								comment
@@ -95,7 +97,7 @@ const Reviews = ({ service }) => {
 						</div>
 					</>
 				)}
-			</form>
+			</di>
 			<div className='reviews_container'>
 				{reviews?.map((reviewData, idx) => (
 					<Review key={idx} reviewData={reviewData} />

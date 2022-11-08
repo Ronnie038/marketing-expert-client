@@ -1,24 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { FaUserCircle } from 'react-icons/fa';
 
 const Review = ({ reviewData }) => {
-	const { name, review } = reviewData;
-	console.log(reviewData);
+	const { name, review, date, photo } = reviewData;
+
+	const [dates, setDate] = useState('');
+
+	// const timeElapsed = Date.now();
+	const reviewDate = new Date(date);
+	const formatedDate = reviewDate.toDateString();
+
+	// "Sun Jun 14 2020"
+
 	return (
 		<div>
 			<div className='review_container'>
 				<div className='review_div mx-auto my-10'>
 					<div className='avatar_container'>
-						<img
-							src='https://images.unsplash.com/photo-1667778680202-7aa8d8a903a7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=400&q=60'
-							alt='unkwon'
-							title='name'
-							className='img_rounded'
-						/>
+						{photo ? (
+							<img
+								src={photo}
+								alt='unkwon'
+								title='name'
+								className='img_rounded'
+							/>
+						) : (
+							<FaUserCircle className='img_rounded text-5xl text-green-600' />
+						)}
 						<div className=''>
-							<p>{name}</p>
-							<p> 2-04-22</p>
+							<p className='reviewer_name'>{name}</p>
 						</div>
 					</div>
+					<p className='review_date'>date: {formatedDate}</p>
+
 					<p>{review}</p>
 				</div>
 			</div>

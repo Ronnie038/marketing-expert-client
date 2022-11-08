@@ -28,6 +28,7 @@ const Register = () => {
 				console.log(result.user);
 				updateProfile(auth.currentUser, {
 					displayName: user.name,
+					photoURL: user.photo,
 				});
 			})
 			.catch((err) => setError(err.code));
@@ -55,6 +56,19 @@ const Register = () => {
 						</div>
 						<div className='form-control'>
 							<label className='label'>
+								<span className='label-text'>Photo_URL</span>
+							</label>
+							<input
+								type='text'
+								onBlur={handleBlur}
+								placeholder='photo_url'
+								className='input input-bordered'
+								name='photo'
+								required
+							/>
+						</div>
+						<div className='form-control'>
+							<label className='label'>
 								<span className='label-text'>Email</span>
 							</label>
 							<input
@@ -71,7 +85,7 @@ const Register = () => {
 								<span className='label-text'>Password</span>
 							</label>
 							<input
-								type='text'
+								type='password'
 								onBlur={handleBlur}
 								name='password'
 								placeholder='password'

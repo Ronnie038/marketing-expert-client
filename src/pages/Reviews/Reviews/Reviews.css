@@ -15,18 +15,20 @@
 }
 
 .review_div {
-	background-color: rgb(80, 83, 129);
+	background-color: rgb(44, 44, 44);
+	border: 1px solid white;
 	border-radius: 10px;
 	max-width: 500px;
-	min-height: 50px;
+	/* min-height: 50px; */
 	position: relative;
-	padding: 1rem;
+	padding: 0.5rem;
 	font-weight: bold;
 	text-align: center;
 }
 .review_div p {
 	color: rgb(255, 255, 255);
 	padding: 1rem;
+	font-weight: 300;
 }
 .review_container {
 	position: relative;
@@ -51,21 +53,33 @@
 	margin-left: 1rem;
 }
 
+.review_date {
+	position: absolute;
+	right: 0;
+	top: -2.5rem;
+	font-size: 12px;
+	font-weight: 400;
+}
+
 .review_div::before {
 	content: '';
 	position: absolute;
-	top: -0.5rem;
-	left: -2.5rem;
+	top: 5%;
+	bottom: 5%;
+	left: -3.6rem;
 	transform: rotateZ(-90deg);
 	border: 1.5rem solid red;
 	border-color: transparent;
 
-	border-bottom: 4rem solid rgb(80, 83, 129);
+	border-bottom: 2rem solid white;
+}
+
+.reviewer_name {
+	font-size: 12px;
 }
 
 @media only screen and (max-width: 700px) {
 	.review_div {
-		background-color: rgb(80, 83, 129);
 		border-radius: 10px;
 		max-width: auto;
 		margin-top: 8rem;
@@ -73,21 +87,22 @@
 	.avatar_container {
 		position: absolute;
 		display: flex;
-		flex-direction: row-reverse;
-		top: -5rem;
-		left: 20%;
+		/* justify-content: center; */
+		align-items: center;
+		top: -4rem;
+		left: 10%;
 		width: 100px;
-		text-align: center;
+		/* text-align: center; */
 	}
 	.review_div .avatar_container p {
 		padding: 0;
 		margin-left: 1rem;
+		margin-bottom: 2rem;
 	}
 	.review_div::before {
-		content: '';
-		left: 50%;
-		top: -3rem;
-		transform: rotateZ(-30deg);
-		border-bottom: 3rem solid rgb(80, 83, 129);
+		display: none;
+	}
+	.review_div .avatar_container .img_rounded {
+		margin-bottom: 2rem;
 	}
 }
