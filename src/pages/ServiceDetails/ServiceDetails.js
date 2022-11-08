@@ -1,11 +1,10 @@
 import React from 'react';
-import Reviews from '../assignment-11/src/pages/Reviews/Reviews/Reviews';
-
+import Reviews from '../Reviews/Reviews/Reviews';
 const ServiceDetails = () => {
 	return (
-		<div className=' text-left ml-40 text-white' data-theme=''>
+		<div className=' text-left  text-white' data-theme=''>
 			<h1 className='text-5xl my-5 text-center'>Service Details</h1>
-			<div className='service_details'>
+			<div className='service_details ml-40'>
 				<h1>Service: Onpage seo</h1>
 				<h1>Price: $200</h1>
 				<p>

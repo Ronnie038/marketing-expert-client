@@ -12,9 +12,10 @@ const Review = () => {
 							title='name'
 							className='img_rounded'
 						/>
-						<span>Morsaline patwary</span>
-						<br />
-						<span> 2-04-22</span>
+						<div className=''>
+							<p>Morsaline patwary</p>
+							<p> 2-04-22</p>
+						</div>
 					</div>
 					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim</p>
 				</div>

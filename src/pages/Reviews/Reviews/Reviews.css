@@ -1,8 +1,9 @@
 .reviews_container {
-	position: relative;
 	padding: 2rem;
 	max-height: 800px;
+
 	overflow-y: scroll;
+	z-index: 11;
 }
 .input_box {
 	min-width: 80%;
@@ -16,7 +17,7 @@
 .review_div {
 	background-color: rgb(80, 83, 129);
 	border-radius: 10px;
-	width: 500px;
+	max-width: 500px;
 	min-height: 50px;
 	position: relative;
 	padding: 1rem;
@@ -39,6 +40,9 @@
 	width: 100px;
 	text-align: center;
 }
+.review_div .avatar_container p {
+	padding: 0;
+}
 
 .img_rounded {
 	width: 50px;
@@ -57,4 +61,33 @@
 	border-color: transparent;
 
 	border-bottom: 4rem solid rgb(80, 83, 129);
+}
+
+@media only screen and (max-width: 700px) {
+	.review_div {
+		background-color: rgb(80, 83, 129);
+		border-radius: 10px;
+		max-width: auto;
+		margin-top: 8rem;
+	}
+	.avatar_container {
+		position: absolute;
+		display: flex;
+		flex-direction: row-reverse;
+		top: -5rem;
+		left: 15%;
+		width: 100px;
+		text-align: center;
+	}
+	.review_div .avatar_container p {
+		padding: 0;
+		margin-left: 1rem;
+	}
+	.review_div::before {
+		content: '';
+		left: 50%;
+		top: -3rem;
+		transform: rotateZ(-30deg);
+		border-bottom: 3rem solid rgb(80, 83, 129);
+	}
 }
