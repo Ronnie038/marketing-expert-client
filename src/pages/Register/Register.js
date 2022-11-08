@@ -4,8 +4,11 @@ import { Link } from 'react-router-dom';
 const Register = () => {
 	return (
 		<div data-theme='dark '>
-			<div className='card card-side px-10 shadow-xl max-w-xl mx-auto mt-20'>
-				<div className='card-body px-10 rounded' data-theme='light'>
+			<div
+				className='card card-side px-10 shadow-xl max-w-xl mx-auto mt-20'
+				data-theme='synthwave'
+			>
+				<div className='card-body px-10 rounded'>
 					<form className=''>
 						<div className='form-control'>
 							<label className='label'>
@@ -38,7 +41,10 @@ const Register = () => {
 							/>
 							<label className='label text-left'>
 								Already have an acount?
-								<Link to='/login' className='  link-hover text-red-400'>
+								<Link
+									to='/login'
+									className='  link-hover text-red-400 font-bold'
+								>
 									Login
 								</Link>
 							</label>

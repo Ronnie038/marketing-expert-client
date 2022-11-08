@@ -3,9 +3,12 @@ import { Link } from 'react-router-dom';
 
 const Login = () => {
 	return (
-		<div data-theme='dark '>
-			<div className='card card-side px-10 shadow-xl max-w-xl mx-auto mt-20'>
-				<div className='card-body px-10 rounded' data-theme='light'>
+		<div data-theme=' '>
+			<div
+				className='card card-side px-10 shadow-xl max-w-xl mx-auto mt-20'
+				data-theme='synthwave'
+			>
+				<div className='card-body px-10 rounded'>
 					<form className=''>
 						<div className='form-control'>
 							<label className='label'>
@@ -28,7 +31,10 @@ const Login = () => {
 							/>
 							<label className='label text-left'>
 								new here ?
-								<Link to='/register' className='  link-hover text-red-400'>
+								<Link
+									to='/register'
+									className='  link-hover text-red-400 font-bold'
+								>
 									Register
 								</Link>
 							</label>
