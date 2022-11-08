@@ -7,7 +7,7 @@ import Login from '../pages/Login/Login';
 import Register from '../pages/Register/Register';
 import ServiceDetails from '../../../ServiceDetails/ServiceDetails';
 
-import Services from '../../../Services/Services';
+import Services from '../pages/Services/Services';
 
 const router = createBrowserRouter([
 	{
