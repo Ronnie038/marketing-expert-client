@@ -6,6 +6,8 @@ import { auth, AuthContext } from '../../context/authProvider/Authprovider';
 const Register = () => {
 	const [userInput, setUserInput] = useState({});
 	const { createUser } = useContext(AuthContext);
+	const [error, setError] = useState('');
+	console.log(error);
 	console.log(userInput);
 
 	const handleBlur = (e) => {
@@ -26,7 +28,7 @@ const Register = () => {
 					displayName: user.name,
 				});
 			})
-			.catch((err) => console.log(err));
+			.catch((err) => setError(err.code));
 	};
 	return (
 		<div data-theme='dark '>
@@ -74,6 +76,10 @@ const Register = () => {
 								className='input input-bordered'
 								required
 							/>
+
+							<label className='label text-left text-red-600'>
+								{error.slice(5)}
+							</label>
 							<label className='label text-left'>
 								Already have an acount?
 								<Link

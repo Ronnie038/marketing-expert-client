@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../context/authProvider/Authprovider';
 
 const Header = () => {
+	const { user, LogOut } = useContext(AuthContext);
+	console.log(user);
 	return (
 		<div className=' sticky top-0 z-10 ' data-theme='night'>
 			<div className='navbar bg-base-100'>
@@ -27,16 +30,24 @@ const Header = () => {
 							tabIndex={0}
 							className='menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52'
 						>
-							<li>
-								<Link to='/addService'>Add Service</Link>
-							</li>
+							{user ? (
+								<>
+									<li>
+										<Link to='/addService'>Add Service</Link>
+									</li>
 
-							<li>
-								<Link to='/myReviews'>Your Review</Link>
-							</li>
-							<li>
-								<Link to='/login'>Login</Link>
-							</li>
+									<li>
+										<Link to='/myReviews'>Your Review</Link>
+									</li>
+									<li>
+										<button onClick={() => LogOut()}>SignOut</button>
+									</li>
+								</>
+							) : (
+								<li>
+									<Link to='/login'>Login</Link>
+								</li>
+							)}
 						</ul>
 					</div>
 					<Link to='/' className='btn btn-ghost normal-case text-xl'>
@@ -45,16 +56,24 @@ const Header = () => {
 				</div>
 				<div className='navbar-center hidden lg:flex'>
 					<ul className='menu menu-horizontal p-0'>
-						<li>
-							<Link to='/addService'>Add Service</Link>
-						</li>
+						{user ? (
+							<>
+								<li>
+									<Link to='/addService'>Add Service</Link>
+								</li>
 
-						<li>
-							<Link to='/myReviews'>Your Review</Link>
-						</li>
-						<li>
-							<Link to='/login'>Login</Link>
-						</li>
+								<li>
+									<Link to='/myReviews'>Your Review</Link>
+								</li>
+								<li>
+									<button onClick={() => LogOut()}>SignOut</button>
+								</li>
+							</>
+						) : (
+							<li>
+								<Link to='/login'>Login</Link>
+							</li>
+						)}
 					</ul>
 				</div>
 				{/* <div className='navbar-end'>

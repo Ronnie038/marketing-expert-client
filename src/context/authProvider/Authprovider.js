@@ -18,16 +18,20 @@ const Authprovider = ({ children }) => {
 	const createUser = (email, password) => {
 		return createUserWithEmailAndPassword(auth, email, password);
 	};
+	const LogOut = () => {
+		return signOut(auth);
+	};
 
 	useEffect(() => {
-		onAuthStateChanged(auth, (result) => {
-			console.log(result);
+		onAuthStateChanged(auth, (curUser) => {
+			setUser(curUser);
 		});
 	}, []);
 
 	const authInfo = {
 		user,
 		createUser,
+		LogOut,
 	};
 
 	return (
