@@ -9,6 +9,7 @@ const Services = () => {
 	return (
 		<div className='   p-5'>
 			<h1 className='text-5xl'>My services</h1>
+			<hr className='my-5' />
 			<div className='flex flex-wrap justify-around'>
 				{servicesData.map((service) => (
 					<Service key={service._id} service={service} />

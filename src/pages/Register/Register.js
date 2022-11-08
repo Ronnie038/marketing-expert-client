@@ -1,7 +1,33 @@
-import React from 'react';
+import { updateCurrentUser } from 'firebase/auth';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { auth, AuthContext } from '../../context/authProvider/Authprovider';
 
 const Register = () => {
+	const [userInput, setUserInput] = useState({});
+	const { createUser } = useContext(AuthContext);
+	console.log(userInput);
+
+	const handleBlur = (e) => {
+		const name = e.target.name;
+		setUserInput({ ...userInput, [name]: e.target.value });
+	};
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		handleSignUpWithEmailAndPassword(userInput);
+	};
+
+	const handleSignUpWithEmailAndPassword = (user) => {
+		createUser(user.email, user.password)
+			.then((result) => {
+				console.log(result.user);
+				updateCurrentUser(auth, {
+					displayName: user.name,
+				});
+			})
+			.catch((err) => console.log(err));
+	};
 	return (
 		<div data-theme='dark '>
 			<div
@@ -9,15 +35,18 @@ const Register = () => {
 				data-theme='synthwave'
 			>
 				<div className='card-body px-10 rounded'>
-					<form className=''>
+					<form onSubmit={handleSubmit} className=''>
 						<div className='form-control'>
 							<label className='label'>
 								<span className='label-text'>Name</span>
 							</label>
 							<input
 								type='text'
+								onBlur={handleBlur}
 								placeholder='Name'
 								className='input input-bordered'
+								name='name'
+								required
 							/>
 						</div>
 						<div className='form-control'>
@@ -25,9 +54,12 @@ const Register = () => {
 								<span className='label-text'>Email</span>
 							</label>
 							<input
-								type='text'
+								type='email'
+								onBlur={handleBlur}
 								placeholder='email'
 								className='input input-bordered'
+								name='email'
+								required
 							/>
 						</div>
 						<div className='form-control'>
@@ -36,8 +68,11 @@ const Register = () => {
 							</label>
 							<input
 								type='text'
+								onBlur={handleBlur}
+								name='password'
 								placeholder='password'
 								className='input input-bordered'
+								required
 							/>
 							<label className='label text-left'>
 								Already have an acount?
@@ -50,7 +85,9 @@ const Register = () => {
 							</label>
 						</div>
 						<div className='form-control mt-6'>
-							<button className='btn btn-primary'>Login</button>
+							<button type='submit' className='btn btn-info'>
+								Register
+							</button>
 						</div>
 
 						<div className=''>
