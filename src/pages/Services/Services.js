@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import Service from './ServiceSummary';
 
 const Services = () => {
-	const [services, setServices] = useState([3, 3, 3, 3, 4, 5, 6]);
+	const servicesData = useLoaderData();
+
+	// console.log(servicesData);
 	return (
 		<div className='   p-5'>
 			<h1 className='text-5xl'>My services</h1>
 			<div className='flex flex-wrap justify-around'>
-				{services.map((item) => (
-					<Service />
+				{servicesData.map((service) => (
+					<Service key={service._id} service={service} />
 				))}
 			</div>
 		</div>
