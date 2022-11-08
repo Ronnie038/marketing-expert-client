@@ -3,68 +3,28 @@ import React from 'react';
 const MyReviews = () => {
 	return (
 		<div data-theme='dark' className=' min-h-screen'>
-			<h2>my reviews</h2>
-			<div className='overflow-x-auto w-full'>
-				<table className='table w-full px-5'>
+			<h1 className='text-5xl my-10'>Your Reviews</h1>
+			<div className='overflow-x-auto'>
+				<table className='table w-full'>
 					<thead>
 						<tr>
-							<th>
-								<label>
-									<input type='checkbox' className='checkbox' />
-								</label>
-							</th>
-							<th>Name</th>
-							<th>Job</th>
-							<th>Favorite Color</th>
 							<th></th>
+							<th>Name</th>
+							<th>Review</th>
+							<th>Control</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<th>
-								<label>
-									<button>X</button>
-								</label>
-							</th>
+							<th>1</th>
+							<td>Cy Ganderton</td>
+							<td>Quality Control Specialist</td>
 							<td>
-								<div className='flex items-center space-x-3'>
-									<div className='avatar'>
-										<div className='mask mask-squircle w-12 h-12'>
-											<img
-												src='/tailwind-css-component-profile-2@56w.png'
-												alt='Avatar Tailwind CSS Component'
-											/>
-										</div>
-									</div>
-									<div>
-										<div className='font-bold'>Hart Hagerty</div>
-										<div className='text-sm opacity-50'>United States</div>
-									</div>
-								</div>
+								<button>Edit</button>
+								<button className='mx-5'>Delete</button>
 							</td>
-							<td>
-								Zemlak, Daniel and Leannon
-								<br />
-								<span className='badge badge-ghost badge-sm'>
-									Desktop Support Technician
-								</span>
-							</td>
-							<td>Purple</td>
-							<th>
-								<button className='btn btn-ghost btn-xs'>details</button>
-							</th>
 						</tr>
 					</tbody>
-
-					<tfoot>
-						<tr>
-							<th></th>
-							<th>Name</th>
-							<th>Job</th>
-							<th>Favorite Color</th>
-							<th></th>
-						</tr>
-					</tfoot>
 				</table>
 			</div>
 		</div>
