@@ -1,11 +1,11 @@
-import { updateCurrentUser } from 'firebase/auth';
+import { updateProfile } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { auth, AuthContext } from '../../context/authProvider/Authprovider';
 
 const Register = () => {
-	const [userInput, setUserInput] = useState({});
 	const { createUser } = useContext(AuthContext);
+	const [userInput, setUserInput] = useState({});
 	const [error, setError] = useState('');
 	console.log(error);
 	console.log(userInput);
@@ -18,13 +18,15 @@ const Register = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		handleSignUpWithEmailAndPassword(userInput);
+		e.target.reset();
 	};
 
 	const handleSignUpWithEmailAndPassword = (user) => {
+		console.log(user.name);
 		createUser(user.email, user.password)
 			.then((result) => {
 				console.log(result.user);
-				updateCurrentUser(auth, {
+				updateProfile(auth.currentUser, {
 					displayName: user.name,
 				});
 			})

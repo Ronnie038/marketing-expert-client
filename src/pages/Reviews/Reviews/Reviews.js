@@ -1,13 +1,39 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../context/authProvider/Authprovider';
 import Review from '../Review/Review';
 import './Reviews.css';
 
-const Reviews = () => {
-	const [reviews, setReviews] = useState([1, 3, 4, 5]);
+const Reviews = ({ service }) => {
+	const { user, reviews, setReviews } = useContext(AuthContext);
+	console.log(user);
+
 	const [inputReviewText, setInputReviewText] = useState('');
+	const [disabled, setDisabled] = useState(true);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
+
+		const userReview = {
+			name: user?.displayName,
+			service: service.name,
+			review: inputReviewText,
+			email: user?.email,
+			photo: user?.photoURL,
+			date: Date.now(),
+		};
+		fetch('http://localhost:5000/reviews', {
+			method: 'POST',
+			headers: {
+				'content-type': 'application/json',
+			},
+			body: JSON.stringify(userReview),
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				console.log(data);
+			})
+			.catch((err) => console.log(err));
 	};
 
 	const handleCancel = () => {
@@ -15,6 +41,11 @@ const Reviews = () => {
 	};
 
 	const handleInputChange = (e) => {
+		if (inputReviewText.length > 2) {
+			setDisabled(false);
+		} else {
+			setDisabled(true);
+		}
 		setInputReviewText(e.target.value);
 	};
 
@@ -33,23 +64,41 @@ const Reviews = () => {
 						onChange={handleInputChange}
 						type='text'
 						placeholder='Add comment'
-						className='input_box w-full max-w-xs'
+						className='input_box px-5 w-full max-w-xs'
 						name='review'
 						value={inputReviewText}
 					/>
 				</div>
-				<div className=' text-right mt-2'>
-					<button onClick={handleCancel} className='btn btn-outline'>
-						cancel
-					</button>
-					<button type='submit' className='btn btn-outline mr-28'>
-						comment
-					</button>
-				</div>
+				{user ? (
+					<>
+						<div className=' text-right mt-2'>
+							<button onClick={handleCancel} className='btn btn-outline'>
+								cancel
+							</button>
+							<button
+								disabled={disabled}
+								type='submit'
+								className='btn btn-outline mr-28'
+							>
+								comment
+							</button>
+						</div>
+					</>
+				) : (
+					<>
+						{' '}
+						<div className=' text-center'>
+							<p className='my-4'>please login to add comment</p>
+							<Link to='/login' className=' p-3 bg-indigo-500 rounded mt-5'>
+								Login{' '}
+							</Link>
+						</div>
+					</>
+				)}
 			</form>
 			<div className='reviews_container'>
-				{reviews.map((review) => (
-					<Review />
+				{reviews?.map((reviewData, idx) => (
+					<Review key={idx} reviewData={reviewData} />
 				))}
 			</div>
 		</div>

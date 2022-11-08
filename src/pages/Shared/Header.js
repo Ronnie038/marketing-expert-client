@@ -4,7 +4,7 @@ import { AuthContext } from '../../context/authProvider/Authprovider';
 
 const Header = () => {
 	const { user, LogOut } = useContext(AuthContext);
-	console.log(user);
+	// console.log(user);
 	return (
 		<div className=' sticky top-0 z-10 ' data-theme='night'>
 			<div className='navbar bg-base-100'>

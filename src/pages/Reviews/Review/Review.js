@@ -1,6 +1,8 @@
 import React from 'react';
 
-const Review = () => {
+const Review = ({ reviewData }) => {
+	const { name, review } = reviewData;
+	console.log(reviewData);
 	return (
 		<div>
 			<div className='review_container'>
@@ -13,11 +15,11 @@ const Review = () => {
 							className='img_rounded'
 						/>
 						<div className=''>
-							<p>Morsaline patwary</p>
+							<p>{name}</p>
 							<p> 2-04-22</p>
 						</div>
 					</div>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim</p>
+					<p>{review}</p>
 				</div>
 			</div>
 		</div>

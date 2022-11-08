@@ -4,7 +4,7 @@ import Reviews from '../Reviews/Reviews/Reviews';
 const ServiceDetails = () => {
 	const service = useLoaderData();
 	const { _id, name, price, description, facility, img_url } = service;
-	console.log(service);
+	// console.log(service);
 	return (
 		<div className=' text-left  text-white' data-theme=''>
 			<h1 className='text-5xl my-5 text-center'>Service Details</h1>
@@ -24,7 +24,7 @@ const ServiceDetails = () => {
 			</div>
 			<hr className='my-10' />
 
-			<Reviews />
+			<Reviews service={service} />
 		</div>
 	);
 };
