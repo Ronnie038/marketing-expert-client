@@ -7,10 +7,11 @@ import Header from '../pages/Shared/Header';
 const Main = () => {
 	return (
 		<div
-			data-theme='light'
-			className='flex justify-between flex-col min-h-screen'
+			data-theme='dark'
+			className=' mx-auto flex justify-between flex-col   min-h-screen relative '
+			style={{ maxWidth: '1400px' }}
 		>
-			<div className=''>
+			<div className='  '>
 				<Header />
 				<Outlet />
 			</div>
