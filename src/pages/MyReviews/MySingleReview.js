@@ -49,6 +49,7 @@ const MySingleReview = ({ data, index }) => {
 					const remainingReview = myReviews.filter((data) => data._id !== _id);
 
 					setMyReviews(remainingReview);
+					setReviewUpdate((prev) => !prev);
 				}
 				return res.json();
 			})
