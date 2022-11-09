@@ -67,7 +67,7 @@ const Reviews = ({ service }) => {
 						onChange={handleInputChange}
 						type='text'
 						placeholder={`${user ? 'Add comment' : 'login to add comment'}`}
-						className='input_box text-red-600 px-5 w-full max-w-xs '
+						className='input_box px-5 w-full max-w-xs '
 						name='review'
 						value={inputReviewText}
 					/>

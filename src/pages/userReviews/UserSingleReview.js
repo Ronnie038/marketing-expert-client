@@ -7,7 +7,8 @@ import './userSingleReview.css';
 
 const UserSingleReview = ({ data, index }) => {
 	const { name, _id, review, service } = data;
-	const { setReviewUpdate, myReviews, setMyReviews } = useContext(AuthContext);
+	const { setReviewUpdate, userReviews, setUserReviews } =
+		useContext(AuthContext);
 	const [myText, setMytext] = useState(review);
 	const [toggle, setToggle] = useState(false);
 
@@ -46,9 +47,11 @@ const UserSingleReview = ({ data, index }) => {
 		})
 			.then((res) => {
 				if (res.ok) {
-					const remainingReview = myReviews.filter((data) => data._id !== _id);
+					const remainingReview = userReviews.filter(
+						(data) => data._id !== _id
+					);
 
-					setMyReviews(remainingReview);
+					setUserReviews(remainingReview);
 					setReviewUpdate((prev) => !prev);
 				}
 				return res.json();

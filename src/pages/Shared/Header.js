@@ -5,6 +5,10 @@ import { AuthContext } from '../../context/authProvider/Authprovider';
 const Header = () => {
 	const { user, LogOut } = useContext(AuthContext);
 	// console.log(user);
+
+	const userSignout = () => {
+		LogOut();
+	};
 	return (
 		<div className=' sticky top-0 z-10  '>
 			<div className='tabs'>
@@ -40,13 +44,13 @@ const Header = () => {
 										</li>
 
 										<li>
-											<Link to='/myReviews' className='tab tab-bordered  '>
+											<Link to='/userReviews' className='tab tab-bordered  '>
 												Your Review
 											</Link>
 										</li>
 										<li>
 											<button
-												onClick={() => LogOut()}
+												onClick={userSignout}
 												className='tab tab-bordered'
 											>
 												SignOut
@@ -81,7 +85,7 @@ const Header = () => {
 									</li>
 
 									<li>
-										<Link to='/myReviews' className='tab tab-bordered py-1'>
+										<Link to='/userReviews' className='tab tab-bordered py-1'>
 											Your Review
 										</Link>
 									</li>

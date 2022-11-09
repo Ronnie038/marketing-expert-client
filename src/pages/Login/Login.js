@@ -4,6 +4,7 @@ import { AuthContext } from '../../context/authProvider/Authprovider';
 import { toast } from 'react-hot-toast';
 import { dynamicTitle } from '../DynamicTitle/DynamicTitle';
 import { fetching } from '../Loader/Loader';
+import { setAuthToken } from '../../ServicesApi/api';
 
 const Login = () => {
 	dynamicTitle('login-page');
@@ -30,6 +31,12 @@ const Login = () => {
 	const handleSignUpWithEmailAndPassword = (user) => {
 		logIn(user.email, user.password)
 			.then((result) => {
+				const curUser = {
+					email: result.user.email,
+				};
+
+				setAuthToken(curUser);
+
 				toast.success('You have succesfully loged in');
 				navigate(from, { replace: true });
 			})
@@ -72,7 +79,7 @@ const Login = () => {
 								required
 							/>
 							<label className='label text-left text-red-500'>
-								{error.slice(5)}
+								{error?.slice(5)}
 							</label>
 							<label className='label text-left'>
 								new here ?
