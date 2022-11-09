@@ -1,10 +1,12 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
+import { dynamicTitle } from '../DynamicTitle/DynamicTitle';
 import Reviews from '../Reviews/Reviews/Reviews';
 const ServiceDetails = () => {
+	dynamicTitle('service-details-and-reviews');
 	const service = useLoaderData();
 	const { _id, name, price, description, facility, img_url } = service;
-	// console.log(service);
+
 	return (
 		<div className=' text-left  text-white' data-theme=''>
 			<h1 className='text-5xl my-5 text-center'>Service Details</h1>

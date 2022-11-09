@@ -3,9 +3,9 @@ import { FaEdit } from 'react-icons/fa';
 import { AiFillDelete } from 'react-icons/ai';
 import { AuthContext } from '../../context/authProvider/Authprovider';
 
-import './MySingleReview.css';
+import './userSingleReview.css';
 
-const MySingleReview = ({ data, index }) => {
+const UserSingleReview = ({ data, index }) => {
 	const { name, _id, review, service } = data;
 	const { setReviewUpdate, myReviews, setMyReviews } = useContext(AuthContext);
 	const [myText, setMytext] = useState(review);
@@ -103,4 +103,4 @@ const MySingleReview = ({ data, index }) => {
 	);
 };
 
-export default MySingleReview;
+export default UserSingleReview;

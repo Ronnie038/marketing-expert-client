@@ -5,11 +5,12 @@ import Main from '../Layout/Main';
 import AddService from '../pages/AddService/AddService';
 import Home from '../pages/Home/Home';
 import Login from '../pages/Login/Login';
-import MyReviews from '../pages/MyReviews/MyReviews';
+
 import Register from '../pages/Register/Register';
 import ServiceDetails from '../pages/ServiceDetails/ServiceDetails';
 
 import Services from '../pages/Services/Services';
+import UserReviews from '../pages/userReviews/UserReviews';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 
 const router = createBrowserRouter([
@@ -52,7 +53,7 @@ const router = createBrowserRouter([
 				path: 'myReviews',
 				element: (
 					<PrivateRoute>
-						<MyReviews />
+						<UserReviews />
 					</PrivateRoute>
 				),
 			},

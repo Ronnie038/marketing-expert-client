@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/authProvider/Authprovider';
 import Review from '../Review/Review';
 import './Reviews.css';
@@ -63,10 +63,11 @@ const Reviews = ({ service }) => {
 						<FaUserCircle className='text-4xl text-green-600' />
 					)}
 					<input
+						disabled={user ? false : true}
 						onChange={handleInputChange}
 						type='text'
-						placeholder='Add comment'
-						className='input_box px-5 w-full max-w-xs'
+						placeholder={`${user ? 'Add comment' : 'login to add comment'}`}
+						className='input_box text-red-600 px-5 w-full max-w-xs '
 						name='review'
 						value={inputReviewText}
 					/>

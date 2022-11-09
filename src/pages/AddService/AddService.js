@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { dynamicTitle } from '../DynamicTitle/DynamicTitle';
 
 const AddService = () => {
+	dynamicTitle('add-your-service');
 	const [serviceInput, setServiceInput] = useState({});
 	const [error, setError] = useState('');
 	// console.log(error);

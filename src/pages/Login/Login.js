@@ -2,9 +2,14 @@ import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/authProvider/Authprovider';
 import { toast } from 'react-hot-toast';
+import { dynamicTitle } from '../DynamicTitle/DynamicTitle';
+import { fetching } from '../Loader/Loader';
 
 const Login = () => {
-	const { logIn } = useContext(AuthContext);
+	dynamicTitle('login-page');
+
+	const { logIn, loading, setLoading } = useContext(AuthContext);
+	console.log(loading);
 	const [userInput, setUserInput] = useState({});
 	const [error, setError] = useState('');
 	const location = useLocation();
@@ -28,7 +33,10 @@ const Login = () => {
 				toast.success('You have succesfully loged in');
 				navigate(from, { replace: true });
 			})
-			.catch((err) => setError(err.code));
+			.catch((err) => setError(err.code))
+			.finally(() => {
+				setLoading((prev) => (prev = false));
+			});
 	};
 	return (
 		<div data-theme=' '>

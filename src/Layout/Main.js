@@ -7,7 +7,7 @@ import Header from '../pages/Shared/Header';
 const Main = () => {
 	return (
 		<div
-			data-theme='dark'
+			data-theme='synthwave'
 			className=' mx-auto flex justify-between flex-col   min-h-screen relative '
 			style={{ maxWidth: '1400px' }}
 		>

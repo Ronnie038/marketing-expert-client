@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../context/authProvider/Authprovider';
-import MySingleReview from './MySingleReview';
+import { dynamicTitle } from '../DynamicTitle/DynamicTitle';
+import MySingleReview from './UserSingleReview';
 
-const MyReviews = () => {
+const UserReviews = () => {
 	const { user, myReviews } = useContext(AuthContext);
-	// const [myReviews, setMyReviews] = useState([]);
+	dynamicTitle(`${user.displayName}-reviews`);
 
 	return (
 		<div data-theme='light' className=' min-h-screen'>
@@ -24,4 +25,4 @@ const MyReviews = () => {
 	);
 };
 
-export default MyReviews;
+export default UserReviews;

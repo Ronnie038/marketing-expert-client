@@ -16,7 +16,6 @@ const Authprovider = ({ children }) => {
 	const [reviews, setReviews] = useState([]);
 	const [myReviews, setMyReviews] = useState([]);
 	const [reviewUpdate, setReviewUpdate] = useState(false);
-	console.log(reviewUpdate);
 
 	const [loading, setLoading] = useState(true);
 
@@ -43,9 +42,13 @@ const Authprovider = ({ children }) => {
 	}, [user?.email, reviews]);
 
 	useEffect(() => {
-		onAuthStateChanged(auth, (curUser) => {
+		const unsubscribe = onAuthStateChanged(auth, (curUser) => {
 			setUser(curUser);
 		});
+
+		return () => {
+			return unsubscribe();
+		};
 	}, []);
 
 	const authInfo = {
@@ -58,6 +61,8 @@ const Authprovider = ({ children }) => {
 		myReviews,
 		setMyReviews,
 		setReviewUpdate,
+		loading,
+		setLoading,
 	};
 
 	return (

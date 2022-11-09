@@ -1,14 +1,18 @@
 import { updateProfile } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { auth, AuthContext } from '../../context/authProvider/Authprovider';
+import { dynamicTitle } from '../DynamicTitle/DynamicTitle';
 
 const Register = () => {
-	const { createUser } = useContext(AuthContext);
+	dynamicTitle('register-page');
+	const { createUser, setLoading } = useContext(AuthContext);
 	const [userInput, setUserInput] = useState({});
 	const [error, setError] = useState('');
-	console.log(error);
-	console.log(userInput);
+	const location = useLocation();
+	const navigate = useNavigate();
+	const from = location?.state?.from?.pathname || '/';
 
 	const handleBlur = (e) => {
 		const name = e.target.name;
@@ -25,13 +29,18 @@ const Register = () => {
 		console.log(user.name);
 		createUser(user.email, user.password)
 			.then((result) => {
-				console.log(result.user);
 				updateProfile(auth.currentUser, {
 					displayName: user.name,
 					photoURL: user.photo,
 				});
+				setLoading(false);
+				navigate(from, { replace: true });
+				toast.success('you have sucessfully signed up');
 			})
-			.catch((err) => setError(err.code));
+			.catch((err) => setError(err.code))
+			.finally(() => {
+				setLoading(false);
+			});
 	};
 	return (
 		<div data-theme='dark '>
