@@ -16,6 +16,12 @@ import PrivateRoute from './PrivateRoute/PrivateRoute';
 const router = createBrowserRouter([
 	{
 		path: '/',
+		errorElement: (
+			<div className='text-red-500 flex justify-center items-center min-h-screen text-3xl text-center'>
+				{' '}
+				<h1>404 not found</h1>
+			</div>
+		),
 		element: <Main />,
 		children: [
 			{

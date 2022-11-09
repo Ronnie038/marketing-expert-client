@@ -6,7 +6,7 @@ import './Reviews.css';
 import { FaUserCircle } from 'react-icons/fa';
 
 const Reviews = ({ service }) => {
-	const { user, reviews, setReviews } = useContext(AuthContext);
+	const { user, reviews, setReviews, reviewUpdate } = useContext(AuthContext);
 
 	const [inputReviewText, setInputReviewText] = useState('');
 	const [disabled, setDisabled] = useState(true);
@@ -54,10 +54,19 @@ const Reviews = ({ service }) => {
 		setInputReviewText(e.target.value);
 	};
 
+	// useEffect(() => {
+	// 	const descending = reviews.sort((a, b) => b.date - a.date);
+	// 	setReviews(descending);
+	// }, [reviews, newReview]);
 	useEffect(() => {
-		const descending = reviews.sort((a, b) => b.date - a.date);
-		setReviews(descending);
-	}, [reviews, newReview]);
+		fetch('http://localhost:5000/reviews')
+			.then((res) => res.json())
+			.then((data) => {
+				const descending = data.sort((a, b) => b.date - a.date);
+				setReviews(descending);
+			})
+			.catch((err) => console.log(err));
+	}, [reviewUpdate, reviews, newReview]);
 
 	return (
 		<div className='p-10'>

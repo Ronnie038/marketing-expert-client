@@ -22,6 +22,7 @@ const Authprovider = ({ children }) => {
 	const createUser = (email, password) => {
 		return createUserWithEmailAndPassword(auth, email, password);
 	};
+
 	const LogOut = () => {
 		localStorage.removeItem('auth-token');
 		return signOut(auth);
@@ -29,12 +30,6 @@ const Authprovider = ({ children }) => {
 	const logIn = (email, password) => {
 		return signInWithEmailAndPassword(auth, email, password);
 	};
-	useEffect(() => {
-		fetch('http://localhost:5000/reviews')
-			.then((res) => res.json())
-			.then((data) => setReviews(data))
-			.catch((err) => console.log(err));
-	}, [reviewUpdate]);
 
 	useEffect(() => {
 		const unsubscribe = onAuthStateChanged(auth, (curUser) => {
@@ -59,6 +54,7 @@ const Authprovider = ({ children }) => {
 		setReviewUpdate,
 		loading,
 		setLoading,
+		reviewUpdate,
 	};
 
 	return (

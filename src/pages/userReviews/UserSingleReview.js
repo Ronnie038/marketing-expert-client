@@ -42,22 +42,25 @@ const UserSingleReview = ({ data, index }) => {
 	};
 
 	const handleDelete = () => {
-		fetch(`http://localhost:5000/reviews/${_id}`, {
-			method: 'delete',
-		})
-			.then((res) => {
-				if (res.ok) {
-					const remainingReview = userReviews.filter(
-						(data) => data._id !== _id
-					);
-
-					setUserReviews(remainingReview);
-					setReviewUpdate((prev) => !prev);
-				}
-				return res.json();
+		const confirm = window.confirm('are you sure you want to delete');
+		if (confirm) {
+			fetch(`http://localhost:5000/reviews/${_id}`, {
+				method: 'delete',
 			})
-			.then((data) => console.log(data))
-			.catch((err) => console.log(err));
+				.then((res) => {
+					if (res.ok) {
+						const remainingReview = userReviews.filter(
+							(data) => data._id !== _id
+						);
+
+						setUserReviews(remainingReview);
+						setReviewUpdate((prev) => !prev);
+					}
+					return res.json();
+				})
+				.then((data) => console.log(data))
+				.catch((err) => console.log(err));
+		}
 	};
 
 	return (

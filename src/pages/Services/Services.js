@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
+import { useLoaderData } from 'react-router-dom';
 import { dynamicTitle } from '../DynamicTitle/DynamicTitle';
 
 import { fetching } from '../Loader/Loader';

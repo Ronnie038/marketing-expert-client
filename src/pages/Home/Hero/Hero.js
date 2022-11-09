@@ -11,13 +11,15 @@ const Hero = () => {
 				<div className='hero-overlay bg-opacity-60'></div>
 				<div className='hero-content text-left text-neutral-content'>
 					<div className='max-w-md'>
-						<h1 className='mb-5 text-5xl font-bold'>Hello there</h1>
+						<h1 className='mb-2 text-2xl font-bold'>Hello there</h1>
+						<h1 className='text-5xl my-3'>My name Is Israfil</h1>
+						<h1 className='text-2xl'> I am a digital marketer</h1>
 						<p className='mb-5'>
-							Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-							excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-							et a id nisi.
+							I am providing the best digital marketing services, if you are
+							looking for For the passionate, dedicated, problem solving
+							person... here you are at the right place
 						</p>
-						<button className='btn btn-primary'>Get Started</button>
+						<button className='btn btn-primary'>Explore</button>
 					</div>
 				</div>
 			</div>

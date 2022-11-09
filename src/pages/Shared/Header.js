@@ -69,9 +69,9 @@ const Header = () => {
 
 						<Link
 							to='/'
-							className='btn btn-ghost normal-case text-xl tab tab-bordered'
+							className='btn btn-ghost normal-case text-xl tab tab-bordered font-serif'
 						>
-							Home
+							Marketing Expert
 						</Link>
 					</div>
 					<div className='navbar-center hidden lg:flex'>

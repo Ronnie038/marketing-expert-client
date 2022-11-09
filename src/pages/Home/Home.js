@@ -5,6 +5,7 @@ import Services from '../Services/Services';
 import HomepageServices from './HomePageServices/HomepageServices';
 import { dynamicTitle } from '../DynamicTitle/DynamicTitle';
 import { AuthContext } from '../../context/authProvider/Authprovider';
+import About from './About/About';
 
 const Home = () => {
 	dynamicTitle('home');
@@ -16,6 +17,7 @@ const Home = () => {
 			<div className=' relative'>
 				<Hero></Hero>
 				<HomepageServices />
+				<About />
 			</div>
 		</div>
 	);
