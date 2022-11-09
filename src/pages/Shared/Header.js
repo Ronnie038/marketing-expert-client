@@ -76,9 +76,6 @@ const Header = () => {
 						)}
 					</ul>
 				</div>
-				{/* <div className='navbar-end'>
-					<Link to='/login'>Login</Link>
-				</div> */}
 			</div>
 		</div>
 	);
