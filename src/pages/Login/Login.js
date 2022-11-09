@@ -1,12 +1,15 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/authProvider/Authprovider';
+import { toast } from 'react-hot-toast';
 
 const Login = () => {
 	const { logIn } = useContext(AuthContext);
 	const [userInput, setUserInput] = useState({});
-
 	const [error, setError] = useState('');
+	const location = useLocation();
+	const navigate = useNavigate();
+	const from = location?.state?.from?.pathname || '/';
 
 	const handleBlur = (e) => {
 		const name = e.target.name;
@@ -22,7 +25,8 @@ const Login = () => {
 	const handleSignUpWithEmailAndPassword = (user) => {
 		logIn(user.email, user.password)
 			.then((result) => {
-				console.log('login successfull');
+				toast.success('You have succesfully loged in');
+				navigate(from, { replace: true });
 			})
 			.catch((err) => setError(err.code));
 	};
@@ -59,6 +63,9 @@ const Login = () => {
 								name='password'
 								required
 							/>
+							<label className='label text-left text-red-500'>
+								{error.slice(5)}
+							</label>
 							<label className='label text-left'>
 								new here ?
 								<Link

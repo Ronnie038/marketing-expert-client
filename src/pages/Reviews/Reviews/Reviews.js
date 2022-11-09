@@ -55,7 +55,7 @@ const Reviews = ({ service }) => {
 		<div className='p-10'>
 			<h1 className='text-3xl text-center'>Reviews</h1>
 			<hr className='my-3' />
-			<di className=' mt-3  pb-3'>
+			<div className=' mt-3  pb-3'>
 				<div className='flex '>
 					{user?.photoURL ? (
 						<img src={user?.photoURL} alt='' className='img_rounded' />
@@ -97,7 +97,7 @@ const Reviews = ({ service }) => {
 						</div>
 					</>
 				)}
-			</di>
+			</div>
 			<div className='reviews_container'>
 				{reviews?.map((reviewData, idx) => (
 					<Review key={idx} reviewData={reviewData} />
