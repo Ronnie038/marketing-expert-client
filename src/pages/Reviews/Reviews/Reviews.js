@@ -10,6 +10,7 @@ const Reviews = ({ service }) => {
 
 	const [inputReviewText, setInputReviewText] = useState('');
 	const [disabled, setDisabled] = useState(true);
+	const [newReview, setNewReview] = useState(1);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -34,6 +35,8 @@ const Reviews = ({ service }) => {
 			.then((res) => res.json())
 			.then((data) => {
 				console.log(data);
+				setInputReviewText('');
+				setNewReview((prev) => prev + 1);
 			})
 			.catch((err) => console.log(err));
 	};
@@ -50,6 +53,11 @@ const Reviews = ({ service }) => {
 		}
 		setInputReviewText(e.target.value);
 	};
+
+	useEffect(() => {
+		const descending = reviews.sort((a, b) => b.date - a.date);
+		setReviews(descending);
+	}, [reviews, newReview]);
 
 	return (
 		<div className='p-10'>

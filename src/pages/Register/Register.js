@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { auth, AuthContext } from '../../context/authProvider/Authprovider';
+import { setAuthToken } from '../../ServicesApi/auth';
 import { dynamicTitle } from '../DynamicTitle/DynamicTitle';
 
 const Register = () => {
@@ -33,6 +34,8 @@ const Register = () => {
 					displayName: user.name,
 					photoURL: user.photo,
 				});
+
+				setAuthToken(result.user);
 				setLoading(false);
 				navigate(from, { replace: true });
 				toast.success('you have sucessfully signed up');

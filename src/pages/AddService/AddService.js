@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../context/authProvider/Authprovider';
 import { dynamicTitle } from '../DynamicTitle/DynamicTitle';
 
 const AddService = () => {
 	dynamicTitle('add-your-service');
 	const [serviceInput, setServiceInput] = useState({});
 	const [error, setError] = useState('');
+	const { LogOut } = useContext(AuthContext);
 	// console.log(error);
 	// console.log(serviceInput);
 
@@ -17,7 +20,12 @@ const AddService = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		const facilityIntoArray = serviceInput?.facility?.split(',');
+		let facilityIntoArray;
+		if (serviceInput.facility.includes(',')) {
+			facilityIntoArray = serviceInput?.facility?.split(',');
+		} else if (serviceInput.facility.includes(' ')) {
+			facilityIntoArray = serviceInput?.facility?.split(' ');
+		}
 		serviceInput.facility = facilityIntoArray;
 		console.log(serviceInput);
 
@@ -25,11 +33,25 @@ const AddService = () => {
 			method: 'post',
 			headers: {
 				'content-type': 'application/json',
+				authorization: `Bearer ${localStorage.getItem('auth-token')}`,
 			},
 			body: JSON.stringify(serviceInput),
 		})
-			.then((res) => res.json())
-			.then((data) => console.log(data))
+			.then((res) => {
+				if (res.status === 401 || res.status === 401) {
+					toast.error('permission forbidded');
+					LogOut();
+					return;
+				} else {
+					return res.json();
+				}
+			})
+			.then((data) => {
+				if (data) {
+					toast.success('service was succesfully added');
+					e.target.reset();
+				}
+			})
 			.catch((err) => console.log(err));
 
 		// e.target.reset();

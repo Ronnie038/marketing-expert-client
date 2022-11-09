@@ -4,7 +4,7 @@ import { AuthContext } from '../../context/authProvider/Authprovider';
 import { toast } from 'react-hot-toast';
 import { dynamicTitle } from '../DynamicTitle/DynamicTitle';
 import { fetching } from '../Loader/Loader';
-import { setAuthToken } from '../../ServicesApi/api';
+import { setAuthToken } from '../../ServicesApi/auth';
 
 const Login = () => {
 	dynamicTitle('login-page');
