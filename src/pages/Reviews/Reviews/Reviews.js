@@ -9,6 +9,7 @@ const Reviews = ({ service }) => {
 	const { user, reviews, setReviews, reviewUpdate } = useContext(AuthContext);
 
 	const [inputReviewText, setInputReviewText] = useState('');
+	const [errpr, setError] = useState('');
 	const [disabled, setDisabled] = useState(true);
 	const [newReview, setNewReview] = useState(1);
 
@@ -35,11 +36,10 @@ const Reviews = ({ service }) => {
 		})
 			.then((res) => res.json())
 			.then((data) => {
-				console.log(data);
 				setInputReviewText('');
 				setNewReview((prev) => prev + 1);
 			})
-			.catch((err) => console.log(err));
+			.catch((err) => setError(err.code));
 	};
 
 	const handleCancel = () => {
@@ -105,6 +105,7 @@ const Reviews = ({ service }) => {
 								comment
 							</button>
 						</div>
+						<div>{errpr}</div>
 					</>
 				) : (
 					<>
