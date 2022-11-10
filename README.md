@@ -1,6 +1,6 @@
 # Project name
 
-site name = WebEye Academy
+site name = marketing-expert
 
 # live site
 
