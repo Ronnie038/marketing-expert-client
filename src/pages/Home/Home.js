@@ -11,7 +11,6 @@ import Workcounter from './WorkCounter/Workcounter';
 const Home = () => {
 	dynamicTitle('marketing-expert-home');
 	const { loading } = useContext(AuthContext);
-	console.log(loading);
 
 	return (
 		<div>

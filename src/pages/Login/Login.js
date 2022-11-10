@@ -3,7 +3,7 @@ import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/authProvider/Authprovider';
 import { toast } from 'react-hot-toast';
 import { dynamicTitle } from '../DynamicTitle/DynamicTitle';
-import { fetching } from '../Loader/Loader';
+
 import { setAuthToken } from '../../ServicesApi/auth';
 import { FaGoogle } from 'react-icons/fa';
 
@@ -26,19 +26,28 @@ const Login = () => {
 	const handleSubmit = (e) => {
 		setLoading(true);
 		e.preventDefault();
-		handleSignUpWithEmailAndPassword(userInput);
+		handleSignInWithEmailAndPassword(userInput);
 		e.target.reset();
 	};
 
-	const handleSignUpWithEmailAndPassword = (user) => {
+	const handleSignInWithEmailAndPassword = (user) => {
 		logIn(user.email, user.password)
 			.then((result) => {
-				const curUser = {
-					email: result.user.email,
-				};
+				setAuthToken(result);
 
-				setAuthToken(curUser);
+				toast.success('You have succesfully loged in');
+				navigate(from, { replace: true });
+			})
+			.catch((err) => setError(err.code))
+			.finally(() => {
+				setLoading((prev) => (prev = false));
+			});
+	};
 
+	const handleGoogleSignIn = () => {
+		googleSignIn()
+			.then((result) => {
+				setAuthToken(result);
 				toast.success('You have succesfully loged in');
 				navigate(from, { replace: true });
 			})
@@ -102,13 +111,7 @@ const Login = () => {
 							<p>or</p>
 							<p>Sign up with</p>
 							<div
-								onClick={() =>
-									googleSignIn()
-										.then(() => {
-											navigate(from, { replace: true });
-										})
-										.catch((err) => console.log(err))
-								}
+								onClick={handleGoogleSignIn}
 								className='btn btn-sm flex justify-center my-2 items-center rounded-md bg-red-600'
 							>
 								<FaGoogle /> <span className='ml-2'>Google</span>

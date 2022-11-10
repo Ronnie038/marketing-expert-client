@@ -41,13 +41,15 @@ const router = createBrowserRouter([
 			{
 				path: 'services',
 				element: <Services />,
-				// loader: () => fetch('http://localhost:5000/services'),
+				// loader: () => fetch('https://marketing-expert-server.vercel.app/services'),
 			},
 			{
 				path: 'service/:id',
 				element: <ServiceDetails />,
 				loader: ({ params }) =>
-					fetch(`http://localhost:5000/services/${params.id}`),
+					fetch(
+						`https://marketing-expert-server.vercel.app/services/${params.id}`
+					),
 			},
 			{
 				path: 'addService',
@@ -69,7 +71,9 @@ const router = createBrowserRouter([
 				path: 'reivew/:id',
 				element: <ReviewEditModal />,
 				loader: ({ params }) =>
-					fetch(`http://localhost:5000/reviews/${params.id}`),
+					fetch(
+						`https://marketing-expert-server.vercel.app/reviews/${params.id}`
+					),
 			},
 			{
 				path: 'blog',

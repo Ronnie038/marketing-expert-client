@@ -18,7 +18,7 @@ const ReviewEditModal = () => {
 		e.preventDefault();
 		const Updatedreview = e.target.review.value;
 
-		fetch(`http://localhost:5000/reviews/${_id}`, {
+		fetch(`https://marketing-expert-server.vercel.app/reviews/${_id}`, {
 			method: 'PUT',
 			headers: {
 				'content-type': 'application/json',
@@ -38,11 +38,16 @@ const ReviewEditModal = () => {
 			.catch((err) => console.log(err));
 	};
 	return (
-		<div className=' rounded-3xl'>
-			<h1 className='text-3xl'>{service}</h1>
-			<form onSubmit={handleSubmit} className=''>
+		<div className=' rounded-3xl '>
+			<h1 className='text-3xl mb-5 pb-5 pt-2 font-bold border-b-2 rounded-2xl max-w-md mx-auto border-l-2 border-r-2'>
+				{service}
+			</h1>
+			<form
+				onSubmit={handleSubmit}
+				className='border max-w-md mx-auto rounded-2xl p-6'
+			>
 				<textarea
-					className='bg-white p-5 rounded-lg text-black'
+					className='bg-white p-5 rounded-lg text-black mb-3'
 					name='review'
 					id=''
 					cols='30'

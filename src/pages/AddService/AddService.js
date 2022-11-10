@@ -6,12 +6,10 @@ import { dynamicTitle } from '../DynamicTitle/DynamicTitle';
 
 const AddService = () => {
 	dynamicTitle('add-your-service');
-	const [serviceInput, setServiceInput] = useState({ date: Date.now() });
+	const [serviceInput, setServiceInput] = useState({});
 	const [error, setError] = useState('');
 	const { LogOut, setReviewUpdate, allServices, setAllServices } =
 		useContext(AuthContext);
-
-	console.log(serviceInput);
 
 	const handleBlur = (e) => {
 		const name = e.target.name;
@@ -21,18 +19,16 @@ const AddService = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		let facilityIntoArray;
-		if (serviceInput.facility.includes(',')) {
-			facilityIntoArray = serviceInput?.facility?.split(',');
-		} else if (serviceInput.facility.includes(' ')) {
-			facilityIntoArray = serviceInput?.facility?.split(' ');
-		}
-		serviceInput.facility = facilityIntoArray;
+		// let facilityIntoArray;
+		// if (serviceInput.facility.includes(',')) {
+		// 	facilityIntoArray = serviceInput?.facility?.split(',');
+		// } else if (serviceInput.facility.includes(' ')) {
+		// 	facilityIntoArray = serviceInput?.facility?.split(' ');
+		// }
+		// serviceInput.facility = facilityIntoArray;
+		serviceInput.date = Date.now().toString();
 
-		serviceInput.date = Date.now();
-		console.log(serviceInput);
-
-		fetch('http://localhost:5000/services', {
+		fetch('https://marketing-expert-server.vercel.app/services', {
 			method: 'post',
 			headers: {
 				'content-type': 'application/json',
@@ -67,12 +63,12 @@ const AddService = () => {
 			<h3 className='text-5xl '>add Your service</h3>
 
 			<div data-theme='dark '>
-				<div className='card card-side px-10 shadow-xl max-w-xl mx-auto mt-20'>
-					<div className='card-body px-10 rounded' data-theme='light'>
+				<div className='card card-side px-10 shadow-2xl border max-w-xl rounded-2xl mx-auto mt-20'>
+					<div className='card-body px-10 rounded' data-theme=''>
 						<form onSubmit={handleSubmit} className=''>
 							<div className='form-control'>
 								<label className='label'>
-									<span className='label-text'>Service Name</span>
+									<span className='label-text font-bold'>Service Name</span>
 								</label>
 								<input
 									onBlur={handleBlur}
@@ -85,7 +81,7 @@ const AddService = () => {
 							</div>
 							<div className='form-control'>
 								<label className='label'>
-									<span className='label-text'>price</span>
+									<span className='label-text font-bold'>price</span>
 								</label>
 								<input
 									onBlur={handleBlur}
@@ -98,7 +94,7 @@ const AddService = () => {
 							</div>
 							<div className='form-control'>
 								<label className='label'>
-									<span className='label-text'>Image URL</span>
+									<span className='label-text font-bold'>Image URL</span>
 								</label>
 								<input
 									onBlur={handleBlur}
@@ -112,7 +108,7 @@ const AddService = () => {
 
 							<div className='form-control'>
 								<label className='label'>
-									<span className='label-text'>Description</span>
+									<span className='label-text font-bold'>Description</span>
 								</label>
 								<textarea
 									onBlur={handleBlur}
@@ -125,7 +121,7 @@ const AddService = () => {
 							</div>
 							<div className='form-control'>
 								<label className='label'>
-									<span className='label-text'>
+									<span className='label-text font-bold'>
 										Facility ......use coma after a facility
 									</span>
 								</label>
@@ -139,7 +135,10 @@ const AddService = () => {
 								/>
 							</div>
 							<div className='form-control mt-6'>
-								<button type='submit' className='btn btn-primary'>
+								<button
+									type='submit'
+									className=' border mt-3 p-3 rounded-2xl transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 hover:bg-white hover:text-black font-bold duration-300 '
+								>
 									Submit
 								</button>
 							</div>

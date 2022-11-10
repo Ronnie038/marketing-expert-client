@@ -10,15 +10,19 @@ const UserReviews = () => {
 	dynamicTitle(`${user.displayName}-reviews`);
 
 	useEffect(() => {
-		fetch(`http://localhost:5000/reviewsByQuery?email=${user?.email}`, {
-			headers: {
-				authorization: `Bearer ${localStorage.getItem('auth-token')}`,
-			},
-		})
+		fetch(
+			`https://marketing-expert-server.vercel.app/reviewsByQuery?email=${user?.email}`,
+			{
+				headers: {
+					authorization: `Bearer ${localStorage.getItem('auth-token')}`,
+				},
+			}
+		)
 			.then((res) => {
 				if (res.status === 401 || res.status === 403) {
 					LogOut();
 					Navigate('/login');
+					return;
 				}
 
 				return res.json();

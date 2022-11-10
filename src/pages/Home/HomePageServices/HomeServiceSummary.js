@@ -5,7 +5,7 @@ const HomeServiceSummary = ({ service }) => {
 	const { _id, name, price, description, img_url } = service;
 
 	return (
-		<div className='card card-compact w-96 my-5   bg-base-100 shadow-xl'>
+		<div className='card card-compact w-96 my-5   border  bg-base-100 shadow-2xl'>
 			<figure>
 				<img src={img_url} />
 			</figure>

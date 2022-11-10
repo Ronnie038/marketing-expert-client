@@ -16,7 +16,7 @@ const UserSingleReview = ({ data, index }) => {
 	// 	e.preventDefault();
 	// 	const Updatedreview = e.target.review.value;
 
-	// 	fetch(`http://localhost:5000/reviews/${_id}`, {
+	// 	fetch(`https://marketing-expert-server.vercel.app/reviews/${_id}`, {
 	// 		method: 'PUT',
 	// 		headers: {
 	// 			'content-type': 'application/json',
@@ -40,7 +40,7 @@ const UserSingleReview = ({ data, index }) => {
 	const handleDelete = () => {
 		const confirm = window.confirm('are you sure you want to delete');
 		if (confirm) {
-			fetch(`http://localhost:5000/reviews/${_id}`, {
+			fetch(`https://marketing-expert-server.vercel.app/reviews/${_id}`, {
 				method: 'delete',
 			})
 				.then((res) => {

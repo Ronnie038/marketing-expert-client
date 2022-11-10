@@ -6,11 +6,13 @@ import 'react-photo-view/dist/react-photo-view.css';
 const Service = ({ service }) => {
 	const { _id, name, description, price, img_url, facility } = service;
 
+	console.log(service);
+
 	return (
-		<div className='card card-compact w-96 my-5   bg-base-100 shadow-xl'>
+		<div className='card card-compact w-96 my-5   bg-base-100 shadow-2xl border rounded-lg '>
 			<PhotoProvider>
 				<PhotoView src={img_url}>
-					<img src={img_url} />
+					<img src={img_url} className='rounded' />
 				</PhotoView>
 			</PhotoProvider>
 			<div className='card-body'>

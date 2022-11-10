@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { dynamicTitle } from '../DynamicTitle/DynamicTitle';
 import Reviews from '../Reviews/Reviews/Reviews';
@@ -24,11 +24,7 @@ const ServiceDetails = () => {
 				<h1 className='text-yellow-600 font-bold'>Price: ${price}</h1>
 				<p className=' w-2/4'>Details: {description}.</p>
 				<h1 className='mt-3 text-3xl mb-3 text-primary'>Facility</h1>
-				<ul className='list-decimal'>
-					{facility.map((item, idx) => (
-						<li key={idx}>{item}</li>
-					))}
-				</ul>
+				<p className=' max-w-md'>{facility}</p>
 			</div>
 			<hr className='my-10' />
 

@@ -13,6 +13,7 @@ const Reviews = ({ service }) => {
 	const [newReview, setNewReview] = useState(1);
 
 	const handleSubmit = (e) => {
+		setDisabled(true);
 		e.preventDefault();
 
 		const userReview = {
@@ -25,7 +26,7 @@ const Reviews = ({ service }) => {
 		};
 
 		setReviews([...reviews, userReview]);
-		fetch('http://localhost:5000/reviews', {
+		fetch('https://marketing-expert-server.vercel.app/reviews', {
 			method: 'POST',
 			headers: {
 				'content-type': 'application/json',
@@ -43,6 +44,7 @@ const Reviews = ({ service }) => {
 
 	const handleCancel = () => {
 		setInputReviewText('');
+		setDisabled(true);
 	};
 
 	const handleInputChange = (e) => {
@@ -59,7 +61,7 @@ const Reviews = ({ service }) => {
 	// 	setReviews(descending);
 	// }, [reviews, newReview]);
 	useEffect(() => {
-		fetch('http://localhost:5000/reviews')
+		fetch('https://marketing-expert-server.vercel.app/reviews')
 			.then((res) => res.json())
 			.then((data) => {
 				const descending = data.sort((a, b) => b.date - a.date);

@@ -16,8 +16,8 @@ const Services = () => {
 	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
-		// loader: () => fetch('http://localhost:5000/services'),
-		fetch('http://localhost:5000/services')
+		// loader: () => fetch('https://marketing-expert-server.vercel.app/services'),
+		fetch('https://marketing-expert-server.vercel.app/services')
 			.then((res) => res.json())
 			.then((data) => setAllServices(data))
 			.catch((err) => console.log(err));

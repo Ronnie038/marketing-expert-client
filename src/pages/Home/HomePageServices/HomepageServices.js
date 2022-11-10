@@ -9,7 +9,7 @@ const HomepageServices = () => {
 	const { loading, setLoading } = useContext(AuthContext);
 
 	useEffect(() => {
-		fetch('http://localhost:5000/services-home')
+		fetch('https://marketing-expert-server.vercel.app/services-home')
 			.then((res) => res.json())
 			.then((data) => setServices(data))
 			.catch((err) => console.log(err));

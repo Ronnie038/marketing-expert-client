@@ -36,7 +36,7 @@ const Register = () => {
 					photoURL: user.photo,
 				});
 
-				setAuthToken(result.user);
+				setAuthToken(result);
 				setLoading(false);
 				navigate(from, { replace: true });
 				toast.success('you have sucessfully signed up');
@@ -46,6 +46,20 @@ const Register = () => {
 				setLoading(false);
 			});
 	};
+
+	const handleGoogleSignIn = () => {
+		googleSignIn()
+			.then((result) => {
+				setAuthToken(result);
+				toast.success('You have succesfully loged in');
+				navigate(from, { replace: true });
+			})
+			.catch((err) => setError(err.code))
+			.finally(() => {
+				setLoading((prev) => (prev = false));
+			});
+	};
+
 	return (
 		<div data-theme='dark '>
 			<div
@@ -129,13 +143,7 @@ const Register = () => {
 							<p>or</p>
 							<p>Sign up with</p>
 							<div
-								onClick={() =>
-									googleSignIn()
-										.then(() => {
-											navigate(from, { replace: true });
-										})
-										.catch((err) => console.log(err))
-								}
+								onClick={handleGoogleSignIn}
 								className='btn btn-sm flex justify-center my-2 items-center rounded-md bg-red-600'
 							>
 								<FaGoogle /> <span className='ml-2'>Google</span>
