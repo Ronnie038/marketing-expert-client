@@ -17,6 +17,7 @@ website link = [https://web-eye-academy.web.app/]
 7. Also your private root is protected by jsonwebtoken
 8. Your Jason token will expire after one hour of login
 9. then you need to login again to access your private route
+10. also custom spinner added for services and private route
 
 # Technologies
 
@@ -27,4 +28,4 @@ website link = [https://web-eye-academy.web.app/]
 5. react photo view
 6. firebse
 7. json web token
-   8
+
