@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/authProvider/Authprovider';
 import { toast } from 'react-hot-toast';
 import { dynamicTitle } from '../DynamicTitle/DynamicTitle';
@@ -104,7 +104,9 @@ const Login = () => {
 							<div
 								onClick={() =>
 									googleSignIn()
-										.then(() => {})
+										.then(() => {
+											navigate(from, { replace: true });
+										})
 										.catch((err) => console.log(err))
 								}
 								className='btn btn-sm flex justify-center my-2 items-center rounded-md bg-red-600'

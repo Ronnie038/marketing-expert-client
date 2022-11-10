@@ -6,11 +6,12 @@ import { dynamicTitle } from '../DynamicTitle/DynamicTitle';
 
 const AddService = () => {
 	dynamicTitle('add-your-service');
-	const [serviceInput, setServiceInput] = useState({});
+	const [serviceInput, setServiceInput] = useState({ date: Date.now() });
 	const [error, setError] = useState('');
-	const { LogOut } = useContext(AuthContext);
-	// console.log(error);
-	// console.log(serviceInput);
+	const { LogOut, setReviewUpdate, allServices, setAllServices } =
+		useContext(AuthContext);
+
+	console.log(serviceInput);
 
 	const handleBlur = (e) => {
 		const name = e.target.name;
@@ -27,6 +28,8 @@ const AddService = () => {
 			facilityIntoArray = serviceInput?.facility?.split(' ');
 		}
 		serviceInput.facility = facilityIntoArray;
+
+		serviceInput.date = Date.now();
 		console.log(serviceInput);
 
 		fetch('http://localhost:5000/services', {
@@ -43,12 +46,14 @@ const AddService = () => {
 					LogOut();
 					return;
 				} else {
+					setReviewUpdate((prev) => !prev);
 					return res.json();
 				}
 			})
 			.then((data) => {
 				if (data) {
 					toast.success('service was succesfully added');
+
 					e.target.reset();
 				}
 			})

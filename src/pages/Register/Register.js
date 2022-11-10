@@ -129,7 +129,13 @@ const Register = () => {
 							<p>or</p>
 							<p>Sign up with</p>
 							<div
-								onClick={() => googleSignIn()}
+								onClick={() =>
+									googleSignIn()
+										.then(() => {
+											navigate(from, { replace: true });
+										})
+										.catch((err) => console.log(err))
+								}
 								className='btn btn-sm flex justify-center my-2 items-center rounded-md bg-red-600'
 							>
 								<FaGoogle /> <span className='ml-2'>Google</span>

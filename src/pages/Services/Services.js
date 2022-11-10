@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import { AuthContext } from '../../context/authProvider/Authprovider';
 import { dynamicTitle } from '../DynamicTitle/DynamicTitle';
 import '../Home/About/About.css';
 
@@ -9,8 +10,18 @@ import Service from './ServiceSummary';
 
 const Services = () => {
 	dynamicTitle('services-page');
-	const servicesData = useLoaderData();
+	// const servicesData = useLoaderData();
+
+	const { allServices, setAllServices, reviewUpdate } = useContext(AuthContext);
 	const [loading, setLoading] = useState(false);
+
+	useEffect(() => {
+		// loader: () => fetch('http://localhost:5000/services'),
+		fetch('http://localhost:5000/services')
+			.then((res) => res.json())
+			.then((data) => setAllServices(data))
+			.catch((err) => console.log(err));
+	}, [reviewUpdate]);
 
 	useEffect(() => {
 		setLoading(true);
@@ -36,7 +47,7 @@ const Services = () => {
 						<hr className='my-5' />
 
 						<div className='flex flex-wrap justify-around'>
-							{servicesData.map((service) => (
+							{allServices.map((service) => (
 								<Service key={service._id} service={service} />
 							))}
 						</div>

@@ -15,7 +15,7 @@ const Service = ({ service }) => {
 			</PhotoProvider>
 			<div className='card-body'>
 				<h2 className='card-title'>{name} </h2>
-				<p className=' text-left'>{description.slice(0, 100) + '...'}</p>
+				<p className=' text-left'>{description?.slice(0, 100) + '...'}</p>
 				<span className='text-left font-bold text-yellow-500 '>
 					price: ${price}
 				</span>

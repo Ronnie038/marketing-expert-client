@@ -50,11 +50,7 @@ const Header = () => {
 												Your Review
 											</Link>
 										</li>
-										<li>
-											<Link to='/blog' className='tab tab-bordered py-1'>
-												blog
-											</Link>
-										</li>
+
 										<li>
 											<button
 												onClick={userSignout}
@@ -80,6 +76,12 @@ const Header = () => {
 						>
 							Marketing Expert
 						</Link>
+						<Link
+							to='/blog'
+							className='btn btn-ghost normal-case text-xl tab tab-bordered font-serif'
+						>
+							Blog
+						</Link>
 					</div>
 					<div className='navbar-center hidden lg:flex'>
 						<ul className='menu menu-horizontal p-0'>
@@ -96,11 +98,7 @@ const Header = () => {
 											Your Review
 										</Link>
 									</li>
-									<li>
-										<Link to='/blog' className='tab tab-bordered py-1'>
-											blog
-										</Link>
-									</li>
+
 									<li>
 										<button
 											onClick={() => LogOut()}
@@ -117,11 +115,20 @@ const Header = () => {
 							)}
 						</ul>
 					</div>
+
 					{!user ? (
-						<FaUser className='ml-auto mr-5' />
+						<>
+							<FaUser className='ml-auto mr-5' />
+						</>
 					) : (
 						<>
 							<div className='dropdown dropdown-end ml-auto mr-5'>
+								<>
+									<label
+										tabIndex={0}
+										className='btn btn-ghost btn-circle avatar'
+									></label>
+								</>
 								<label tabIndex={0} className='btn btn-ghost btn-circle avatar'>
 									<div className='w-10 rounded-full'>
 										<img

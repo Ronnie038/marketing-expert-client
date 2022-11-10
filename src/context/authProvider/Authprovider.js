@@ -19,6 +19,7 @@ const Authprovider = ({ children }) => {
 	const [userReviews, setUserReviews] = useState([]);
 	const [reviewUpdate, setReviewUpdate] = useState(false);
 	const [reviewText, setReviewtext] = useState('');
+	const [allServices, setAllServices] = useState([]);
 
 	const [loading, setLoading] = useState(true);
 
@@ -27,10 +28,12 @@ const Authprovider = ({ children }) => {
 	};
 
 	const LogOut = () => {
+		setLoading(true);
 		localStorage.removeItem('auth-token');
 		return signOut(auth);
 	};
 	const logIn = (email, password) => {
+		setLoading(true);
 		return signInWithEmailAndPassword(auth, email, password);
 	};
 
@@ -65,6 +68,8 @@ const Authprovider = ({ children }) => {
 		reviewUpdate,
 		reviewText,
 		setReviewtext,
+		allServices,
+		setAllServices,
 	};
 
 	return (
