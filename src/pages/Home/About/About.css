@@ -178,7 +178,7 @@
 
 @media (max-width: 75em) {
 	html {
-		font-size: 56.25%;
+		/* font-size: 56.25%; */
 	}
 	.custom_container {
 		max-width: 110rem;
@@ -198,7 +198,7 @@
 /* for 980 */
 @media (max-width: 980px) {
 	html {
-		font-size: 50%;
+		font-size: 70%;
 	}
 	.section-resume .custom_grid-two-colum {
 		grid-template-columns: 1fr;
@@ -252,5 +252,8 @@
 	}
 	.section-contact-main input[type='submit'] {
 		max-width: 40%;
+	}
+	.section-work-data .custom_grid-four-colum {
+		grid-template-columns: 1fr 1fr;
 	}
 }

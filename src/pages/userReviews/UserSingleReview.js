@@ -4,42 +4,38 @@ import { AiFillDelete } from 'react-icons/ai';
 import { AuthContext } from '../../context/authProvider/Authprovider';
 
 import './userSingleReview.css';
+import { Link } from 'react-router-dom';
 
 const UserSingleReview = ({ data, index }) => {
 	const { name, _id, review, service } = data;
 	const { setReviewUpdate, userReviews, setUserReviews } =
 		useContext(AuthContext);
-	const [myText, setMytext] = useState(review);
-	const [toggle, setToggle] = useState(false);
+	const [reviewText, setReviewtext] = useState(review);
 
-	const handleToggle = () => {
-		setToggle(!toggle);
-	};
+	// const handleSubmit = (e) => {
+	// 	e.preventDefault();
+	// 	const Updatedreview = e.target.review.value;
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		const Updatedreview = e.target.review.value;
+	// 	fetch(`http://localhost:5000/reviews/${_id}`, {
+	// 		method: 'PUT',
+	// 		headers: {
+	// 			'content-type': 'application/json',
+	// 		},
+	// 		body: JSON.stringify({ review: Updatedreview }),
+	// 	})
+	// 		.then((res) => res.json())
+	// 		.then((data) => {
+	// 			if (data.upsert === true) {
+	// 				// to update the latest review
+	// 				setReviewUpdate((prev) => !prev);
 
-		fetch(`http://localhost:5000/reviews/${_id}`, {
-			method: 'PUT',
-			headers: {
-				'content-type': 'application/json',
-			},
-			body: JSON.stringify({ review: Updatedreview }),
-		})
-			.then((res) => res.json())
-			.then((data) => {
-				if (data.upsert === true) {
-					// to update the latest review
-					setReviewUpdate((prev) => !prev);
-
-					setMytext(Updatedreview);
-					setToggle(false);
-				}
-				return console.log(data);
-			})
-			.catch((err) => console.log(err));
-	};
+	// 				setReviewtext(Updatedreview);
+	// 				setToggle(false);
+	// 			}
+	// 			return console.log(data);
+	// 		})
+	// 		.catch((err) => console.log(err));
+	// };
 
 	const handleDelete = () => {
 		const confirm = window.confirm('are you sure you want to delete');
@@ -66,17 +62,16 @@ const UserSingleReview = ({ data, index }) => {
 	return (
 		<div data-theme='dark' className=' rounded-lg '>
 			<div className=' text-left p-5 myreview_div relative'>
-				<div className='' style={{ display: `${toggle ? 'none' : 'block'}` }}>
+				<div className=''>
 					<p className='font-bold'>{service}</p>
-					<p>review: {myText}</p>
+					<p>review: {review}</p>
 				</div>
 
 				<div className=' absolute top-3 right-1'>
 					<button>
-						<FaEdit
-							onClick={handleToggle}
-							className='text-2xl text-green-600'
-						/>
+						<Link to={`/reivew/${_id}`}>
+							<FaEdit className='text-2xl text-green-600' />
+						</Link>
 					</button>
 					<button>
 						<AiFillDelete
@@ -86,7 +81,7 @@ const UserSingleReview = ({ data, index }) => {
 					</button>
 				</div>
 
-				<form
+				{/* <form
 					onSubmit={handleSubmit}
 					className=''
 					style={{ display: `${toggle ? 'block' : 'none'}` }}
@@ -103,7 +98,7 @@ const UserSingleReview = ({ data, index }) => {
 					<button type='submit' className='btn btn-info'>
 						Submit
 					</button>
-				</form>
+				</form> */}
 			</div>
 		</div>
 	);

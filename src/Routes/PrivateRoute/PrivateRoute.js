@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../context/authProvider/Authprovider';
 
 import { Navigate, useLocation } from 'react-router-dom';
-import { fetching } from '../../pages/Loader/Loader';
+import Spinner from '../../pages/Loader/Loader';
 
 const PrivateRoute = ({ children }) => {
 	const { user, loading } = useContext(AuthContext);
@@ -10,7 +10,7 @@ const PrivateRoute = ({ children }) => {
 	console.log(loading);
 
 	if (loading) {
-		return fetching();
+		return <Spinner />;
 	}
 	if (!user) {
 		return <Navigate to='/login' state={{ from: location }} replace></Navigate>;

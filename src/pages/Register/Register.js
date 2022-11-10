@@ -1,6 +1,7 @@
 import { updateProfile } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
+import { FaGoogle } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { auth, AuthContext } from '../../context/authProvider/Authprovider';
 import { setAuthToken } from '../../ServicesApi/auth';
@@ -8,7 +9,7 @@ import { dynamicTitle } from '../DynamicTitle/DynamicTitle';
 
 const Register = () => {
 	dynamicTitle('register-page');
-	const { createUser, setLoading } = useContext(AuthContext);
+	const { createUser, setLoading, googleSignIn } = useContext(AuthContext);
 	const [userInput, setUserInput] = useState({});
 	const [error, setError] = useState('');
 	const location = useLocation();
@@ -119,7 +120,7 @@ const Register = () => {
 							</label>
 						</div>
 						<div className='form-control mt-6'>
-							<button type='submit' className='btn btn-info'>
+							<button type='submit' className='btn btn-secondary'>
 								Register
 							</button>
 						</div>
@@ -127,7 +128,12 @@ const Register = () => {
 						<div className=''>
 							<p>or</p>
 							<p>Sign up with</p>
-							<button>Google</button>
+							<div
+								onClick={() => googleSignIn()}
+								className='btn btn-sm flex justify-center my-2 items-center rounded-md bg-red-600'
+							>
+								<FaGoogle /> <span className='ml-2'>Google</span>
+							</div>
 						</div>
 					</form>
 				</div>

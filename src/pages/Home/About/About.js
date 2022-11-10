@@ -29,7 +29,7 @@ const About = () => {
 
 							<div className='resume-data-subsection'>
 								<div className='resume-data-left'>
-									<h3>Online educator on Youtuber</h3>
+									<h3>digital marketer</h3>
 									<div className='custom_grid custom_grid-two-col'>
 										<p>
 											<FaBusinessTime />
@@ -125,7 +125,7 @@ const About = () => {
 												<FaCalendar /> Wadia College, Inc.
 											</p>
 											<p>
-												<FaLocationArrow /> Pune, MH
+												<FaLocationArrow /> buet, dhaka
 											</p>
 										</div>
 									</div>

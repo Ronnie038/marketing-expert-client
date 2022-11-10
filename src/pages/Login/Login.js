@@ -5,12 +5,13 @@ import { toast } from 'react-hot-toast';
 import { dynamicTitle } from '../DynamicTitle/DynamicTitle';
 import { fetching } from '../Loader/Loader';
 import { setAuthToken } from '../../ServicesApi/auth';
+import { FaGoogle } from 'react-icons/fa';
 
 const Login = () => {
 	dynamicTitle('login-page');
 
-	const { logIn, loading, setLoading } = useContext(AuthContext);
-	console.log(loading);
+	const { logIn, loading, setLoading, googleSignIn } = useContext(AuthContext);
+
 	const [userInput, setUserInput] = useState({});
 	const [error, setError] = useState('');
 	const location = useLocation();
@@ -23,6 +24,7 @@ const Login = () => {
 	};
 
 	const handleSubmit = (e) => {
+		setLoading(true);
 		e.preventDefault();
 		handleSignUpWithEmailAndPassword(userInput);
 		e.target.reset();
@@ -99,7 +101,16 @@ const Login = () => {
 						<div className=''>
 							<p>or</p>
 							<p>Sign up with</p>
-							<button>Google</button>
+							<div
+								onClick={() =>
+									googleSignIn()
+										.then(() => {})
+										.catch((err) => console.log(err))
+								}
+								className='btn btn-sm flex justify-center my-2 items-center rounded-md bg-red-600'
+							>
+								<FaGoogle /> <span className='ml-2'>Google</span>
+							</div>
 						</div>
 					</form>
 				</div>

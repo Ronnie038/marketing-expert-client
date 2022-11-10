@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { dynamicTitle } from '../DynamicTitle/DynamicTitle';
+import '../Home/About/About.css';
 
-import { fetching } from '../Loader/Loader';
+import Spinner from '../Loader/Loader';
 
 import Service from './ServiceSummary';
 
@@ -24,10 +25,12 @@ const Services = () => {
 
 	return (
 		<>
-			<div className='   p-5'>
-				<h1 className='text-5xl'>My services</h1>
+			<div className='   p-5 '>
+				<h1 className='common-heading'>My services</h1>
+				{/* <Spinner /> */}
+
 				{loading ? (
-					fetching(!loading)
+					<Spinner />
 				) : (
 					<>
 						<hr className='my-5' />

@@ -3,6 +3,7 @@ import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import Main from '../Layout/Main';
 import AddService from '../pages/AddService/AddService';
+import Blogs from '../pages/Blogs/Blogs';
 import Home from '../pages/Home/Home';
 import Login from '../pages/Login/Login';
 
@@ -10,6 +11,7 @@ import Register from '../pages/Register/Register';
 import ServiceDetails from '../pages/ServiceDetails/ServiceDetails';
 
 import Services from '../pages/Services/Services';
+import ReviewEditModal from '../pages/userReviews/ReviewEditModal/ReviewEditModal';
 import UserReviews from '../pages/userReviews/UserReviews';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 
@@ -62,6 +64,16 @@ const router = createBrowserRouter([
 						<UserReviews />
 					</PrivateRoute>
 				),
+			},
+			{
+				path: 'reivew/:id',
+				element: <ReviewEditModal />,
+				loader: ({ params }) =>
+					fetch(`http://localhost:5000/reviews/${params.id}`),
+			},
+			{
+				path: 'blog',
+				element: <Blogs />,
 			},
 		],
 	},

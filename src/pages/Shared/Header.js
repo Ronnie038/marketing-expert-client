@@ -1,10 +1,12 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/authProvider/Authprovider';
+import { FaUser } from 'react-icons/fa';
 
 const Header = () => {
 	const { user, LogOut } = useContext(AuthContext);
 	// console.log(user);
+	console.log(user);
 
 	const userSignout = () => {
 		LogOut();
@@ -49,6 +51,11 @@ const Header = () => {
 											</Link>
 										</li>
 										<li>
+											<Link to='/blog' className='tab tab-bordered py-1'>
+												blog
+											</Link>
+										</li>
+										<li>
 											<button
 												onClick={userSignout}
 												className='tab tab-bordered'
@@ -90,6 +97,11 @@ const Header = () => {
 										</Link>
 									</li>
 									<li>
+										<Link to='/blog' className='tab tab-bordered py-1'>
+											blog
+										</Link>
+									</li>
+									<li>
 										<button
 											onClick={() => LogOut()}
 											className='tab tab-bordered py-1'
@@ -105,6 +117,38 @@ const Header = () => {
 							)}
 						</ul>
 					</div>
+					{!user ? (
+						<FaUser className='ml-auto mr-5' />
+					) : (
+						<>
+							<div className='dropdown dropdown-end ml-auto mr-5'>
+								<label tabIndex={0} className='btn btn-ghost btn-circle avatar'>
+									<div className='w-10 rounded-full'>
+										<img
+											src={`${user?.photoURL ? user.photoURL : <FaUser />}`}
+										/>
+									</div>
+								</label>
+								<ul
+									tabIndex={0}
+									className='menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52'
+								>
+									<li>
+										<Link className='justify-between'>
+											{user?.displayName}
+											<span className='badge'>New</span>
+										</Link>
+									</li>
+									<li>
+										<p>{user?.email.split('@')[0]}</p>
+									</li>
+									<li>
+										<button onClick={() => LogOut()}>Logout</button>
+									</li>
+								</ul>
+							</div>
+						</>
+					)}
 				</div>
 			</div>
 		</div>

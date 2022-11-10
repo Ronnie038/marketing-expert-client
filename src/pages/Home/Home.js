@@ -6,9 +6,10 @@ import HomepageServices from './HomePageServices/HomepageServices';
 import { dynamicTitle } from '../DynamicTitle/DynamicTitle';
 import { AuthContext } from '../../context/authProvider/Authprovider';
 import About from './About/About';
+import Workcounter from './WorkCounter/Workcounter';
 
 const Home = () => {
-	dynamicTitle('home');
+	dynamicTitle('marketing-expert-home');
 	const { loading } = useContext(AuthContext);
 	console.log(loading);
 
@@ -18,6 +19,7 @@ const Home = () => {
 				<Hero></Hero>
 				<HomepageServices />
 				<About />
+				<Workcounter />
 			</div>
 		</div>
 	);

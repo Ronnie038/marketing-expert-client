@@ -2,8 +2,10 @@ import React, { createContext, useEffect, useState } from 'react';
 import {
 	createUserWithEmailAndPassword,
 	getAuth,
+	GoogleAuthProvider,
 	onAuthStateChanged,
 	signInWithEmailAndPassword,
+	signInWithPopup,
 	signOut,
 } from 'firebase/auth';
 import app from '../../firebase/firebase';
@@ -16,6 +18,7 @@ const Authprovider = ({ children }) => {
 	const [reviews, setReviews] = useState([]);
 	const [userReviews, setUserReviews] = useState([]);
 	const [reviewUpdate, setReviewUpdate] = useState(false);
+	const [reviewText, setReviewtext] = useState('');
 
 	const [loading, setLoading] = useState(true);
 
@@ -29,6 +32,10 @@ const Authprovider = ({ children }) => {
 	};
 	const logIn = (email, password) => {
 		return signInWithEmailAndPassword(auth, email, password);
+	};
+
+	const googleSignIn = () => {
+		return signInWithPopup(auth, new GoogleAuthProvider());
 	};
 
 	useEffect(() => {
@@ -47,6 +54,7 @@ const Authprovider = ({ children }) => {
 		createUser,
 		LogOut,
 		logIn,
+		googleSignIn,
 		reviews,
 		setReviews,
 		userReviews,
@@ -55,6 +63,8 @@ const Authprovider = ({ children }) => {
 		loading,
 		setLoading,
 		reviewUpdate,
+		reviewText,
+		setReviewtext,
 	};
 
 	return (

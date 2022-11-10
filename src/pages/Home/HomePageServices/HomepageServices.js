@@ -18,7 +18,7 @@ const HomepageServices = () => {
 	}, []);
 	return (
 		<div className='   p-5'>
-			<h1 className='text-5xl'>My services</h1>
+			<h1 className='common-heading'>My services</h1>
 
 			<div className='flex flex-wrap justify-around'>
 				{services.map((service) => (

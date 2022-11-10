@@ -32,7 +32,7 @@ const UserReviews = () => {
 			<div className='flex flex-wrap gap-5 justify-around'>
 				{userReviews?.length < 1 ? (
 					<h1 className='text-3xl text-red-600 font-bold'>
-						You don't have reviews
+						no rivews were added
 					</h1>
 				) : (
 					userReviews?.map((data, idx) => (
