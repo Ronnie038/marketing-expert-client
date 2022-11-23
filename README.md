@@ -4,7 +4,7 @@ site name = marketing-expert
 
 # live site
 
-website link = [https://web-eye-academy.web.app/]
+website link = [https://webeye-assignment10.web.app/]
 
 # Functionality
 
